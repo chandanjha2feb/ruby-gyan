@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :courses
   root 'home#index'
   get 'home/index'
   get 'privacy_policy', to: "static_pages#privacy_policy"
