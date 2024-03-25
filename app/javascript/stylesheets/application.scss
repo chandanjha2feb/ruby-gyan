@@ -1,5 +1,20 @@
 
-@import "bootstrap";
+//@import "bootstrap";
 //@import "font-awesome-sprockets";
 //@import "font-awesome";
 @import "./actiontext.scss";
+
+// header navbar dropdown on top of all other content
+.dropdown {z-index: 9999;}
+// footer on bottom
+html {
+    margin: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+footer {
+    margin-top: auto;
+}
