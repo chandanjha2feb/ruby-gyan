@@ -57,3 +57,4 @@ gem 'html2haml', '~> 2.3'
 gem 'simple_form'
 gem 'faker'
 gem "devise"
+gem 'friendly_id', '~> 5.5.0'
