@@ -22,11 +22,17 @@
             = link_to users_path, class: 'nav-link' do
               .fa.fa-users
               Users
-
-        %form.d-flex
-          = form_tag(courses_path, method: :get) do
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(home_activities_path)}"}
+            = link_to home_activities_path, class: 'nav-link' do
+              .fa.fa-bell
+              Activity
+        .form-inline
+        /SEARCH IN NAVBAR
+        //temporary if statement. when a user tries to log in and there is a form input error, @ransack_courses is not initialized.
+        - if @ransack_courses.present?
+          = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|
             .input-group
-              = text_field_tag :title, params[:title], autocomplete: 'off', placeholder: "Search", class: 'form-control-sm'
+              = f.search_field :title_cont, class: 'form-control-sm', style: 'float: left; width: 150px; ', placeholder: 'Find a course', :autocomplete => :off
               %span.input-group-append
                 %button.btn.btn-primary.btn-sm{:type => "submit"}
                   %span.fa.fa-search{"aria-hidden" => "true"}
