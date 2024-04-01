@@ -5,7 +5,12 @@
 
   .form-inputs
     = f.input :title
+    = f.label :description
     = f.rich_text_area :description
+    = f.input :short_description
+    = f.input :language, collection: %w(English Polish Russian German)
+    = f.input :level, collection: %w(Beginner Intermediate Advance)
+    = f.input :price
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, class: "btn-success"
