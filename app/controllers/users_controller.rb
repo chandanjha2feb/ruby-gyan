@@ -1,10 +1,37 @@
 class UsersController < ApplicationController
-    
-    def index
-        @users = User.all.order(created_at: "desc") 
+    before_action :set_user, only: [:edit, :update, :show]
 
-        @q = @users.ransack(params[:q])
+    def index
+        @q = User.ransack(params[:q])
         @users = @q.result(distinct: true)
     end
-  end
+
+    def edit
+        authorize @user
+    end
+
+    def show
+    end
+
+    def update
+        authorize @user
+
+        if @user.update(user_params)
+            redirect_to users_path, notice: 'User roles were successfully updated.'
+        else
+            render :edit
+        end
+    end
+
+    private
+
+    def set_user
+        @user = User.friendly.find(params[:id])
+    end
+
+    def user_params
+        params.require(:user).permit({role_ids: []})
+    end
+
+end
   
