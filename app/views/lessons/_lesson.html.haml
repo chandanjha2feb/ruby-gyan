@@ -8,5 +8,5 @@
 - if policy(lesson).edit?
   .card-footer
     = link_to 'Edit', edit_course_lesson_path(lesson), class: 'btn btn-sm btn-warning'
-    = link_to 'Destroy', course_lesson_path(lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+    = link_to 'Destroy', course_lesson_path(lesson.course, lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 %p

@@ -13,8 +13,9 @@ class LessonsController < ApplicationController
 
   # GET /lessons/new
   def new
-    @lesson = Lesson.new
     @course = Course.friendly.find(params[:course_id])
+    @lesson = @course.lessons.new
+    authorize @lesson
   end
 
   # GET /lessons/1/edit
@@ -26,6 +27,7 @@ class LessonsController < ApplicationController
   def create
     @course = Course.friendly.find(params[:course_id])
     @lesson = @course.lessons.new(lesson_params)
+    authorize @lesson
     respond_to do |format|
       if @lesson.save
         format.html { redirect_to course_lesson_path(@course, @lesson), notice: "Lesson was successfully created." }
@@ -57,7 +59,7 @@ class LessonsController < ApplicationController
     @lesson.destroy
 
     respond_to do |format|
-      format.html { redirect_to courses_lesson_path(@course), notice: "Lesson was successfully destroyed." }
+      format.html { redirect_to course_path(@course), notice: "Lesson was successfully destroyed." }
       format.json { head :no_content }
     end
   end
@@ -65,12 +67,13 @@ class LessonsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lesson
+      byebug
       @course = Course.friendly.find(params[:course_id])
       @lesson = Lesson.friendly.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def lesson_params
-      params.require(:lesson).permit(:title, :content, :course_id)
+      params.require(:lesson).permit(:title, :content)
     end
 end
