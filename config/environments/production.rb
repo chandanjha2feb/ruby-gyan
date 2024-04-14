@@ -117,4 +117,13 @@ Rails.application.configure do
   # config.active_record.database_selector = { delay: 2.seconds }
   # config.active_record.database_resolver = ActiveRecord::Middleware::DatabaseSelector::Resolver
   # config.active_record.database_resolver_context = ActiveRecord::Middleware::DatabaseSelector::Resolver::Session
+
+  # TODO: Production mail settings for getting exceptions mail
+  # Rails.application.config.middleware.use ExceptionNotification::Rack,
+  #   email: {
+  #     deliver_with: :deliver, # Rails >= 4.2.1 do not need this option since it defaults to :deliver_now
+  #     email_prefix: '[PREFIX] ',
+  #     sender_address: %{"corsego error" <support@corsego.herokuapp.com>},
+  #     exception_recipients: %w{yshmarov@gmail.com}
+  #   }
 end
