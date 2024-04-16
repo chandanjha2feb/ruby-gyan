@@ -1,12 +1,12 @@
 .card
-  .card-header
-    = link_to lesson.title, course_lesson_path(lesson.course, lesson)
-- if policy(lesson).show?
-  .card-body
-    = lesson.content
-    = lesson.course
-- if policy(lesson).edit?
-  .card-footer
-    = link_to 'Edit', edit_course_lesson_path(lesson), class: 'btn btn-sm btn-warning'
-    = link_to 'Destroy', course_lesson_path(lesson.course, lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
+    .card-header
+        .far.fa-check-square
+        = link_to lesson.title, course_lesson_path(lesson.course, lesson)
+    - if policy(lesson).show?
+        .card-body
+            = lesson.content
+    - if policy(lesson).edit?
+        .card-footer
+            = link_to 'Edit', edit_course_lesson_path(lesson.course,lesson), class: 'btn btn-sm btn-warning'
+            = link_to 'Destroy', course_lesson_path(lesson.course, lesson), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger'
 %p

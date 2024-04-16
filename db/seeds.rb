@@ -1,10 +1,16 @@
-# User.create!(email: "admin@example.com", password: "admin@example.com", password_confirmation: "admin@example.com")
+user = User.new(
+  email: 'admin@example.com', 
+  password: 'admin@example.com', 
+  password_confirmation: 'admin@example.com'
+)
+user.skip_confirmation!
+user.save!
 
-30.times do
+10.times do
     Course.create!([{
         title: Faker::Educator.course_name,
         description: Faker::TvShows::GameOfThrones.quote,
-        user_id: User.first.id,
+        user_id: user.id,
         short_description: Faker::Quote.famous_last_words,
         language: Faker::ProgrammingLanguage.name,
         level: "Beginner",
