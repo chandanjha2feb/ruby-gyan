@@ -1,4 +1,8 @@
 class Enrollment < ApplicationRecord
+
+  extend FriendlyId
+  friendly_id :to_s, use: :slugged
+
   belongs_to :course
   belongs_to :user
 
