@@ -7,7 +7,7 @@ class LessonPolicy < ApplicationPolicy
     end
 
     def show?
-      @user.has_role?(:admin) || @record.course.user_id == @user.id
+      @user.has_role?(:admin, @user) || @record.course.user_id == @user.id
     end
   
     def edit?
@@ -28,6 +28,10 @@ class LessonPolicy < ApplicationPolicy
   
     def update?
         @record.course.user_id == @user.id
+    end
+
+    def index?
+      @user.has_role?(:admin, @user)
     end
   end
   
