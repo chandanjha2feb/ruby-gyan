@@ -20,6 +20,11 @@
     .fa.fa-tasks
     = course.lessons.count
   .card-footer
+    .text-center
+      = enrollment_button(course)
+      .row
+      = review_button(course)
+  .card-footer
     .row
       .col-md-6
         .far.fa-clock
