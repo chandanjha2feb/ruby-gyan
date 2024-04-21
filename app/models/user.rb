@@ -3,6 +3,9 @@ class User < ApplicationRecord
 
   rolify
   resourcify
+  
+  has_many :courses, dependent: :destroy
+  has_many :enrollments
 
   after_create :assign_default_role
 
@@ -13,11 +16,8 @@ class User < ApplicationRecord
 
   extend FriendlyId
   friendly_id :email, use: :slugged
-     
-  
-  has_many :courses, dependent: :destroy
-  validate :must_have_a_role, on: :update
 
+  validate :must_have_a_role, on: :update
 
   def self.ransackable_attributes(auth_object = nil)
     ["confirmation_sent_at", "confirmation_token", "confirmed_at", "created_at", "current_sign_in_at", "current_sign_in_ip", "email", "encrypted_password", "id", "last_sign_in_at", "last_sign_in_ip", "remember_created_at", "reset_password_sent_at", "reset_password_token", "sign_in_count", "unconfirmed_email", "updated_at"]

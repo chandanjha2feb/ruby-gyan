@@ -22,6 +22,10 @@
             = link_to users_path, class: 'nav-link' do
               .fa.fa-users
               Users
+          %li.nav-item{class: "#{'active font-weight-bold' if current_page?(enrollments_path)}"}
+            = link_to enrollments_path, class: 'nav-link' do
+              .fa.fa-lock-open
+              Enrollments
         .form-inline
         /SEARCH IN NAVBAR
         //temporary if statement. when a user tries to log in and there is a form input error, @ransack_courses is not initialized.

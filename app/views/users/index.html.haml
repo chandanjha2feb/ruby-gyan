@@ -10,13 +10,15 @@
 
 = search_form_for @q do |f|
     = f.search_field :email_cont, placeholder: 'email'
-    = f.search_field :sign_in_count_eq, placeholder: 'sign in count'
+    /= f.search_field :sign_in_count_eq, placeholder: 'sign in count'
     = f.submit
 .ml-2
     = link_to users_path, class: "btn btn-sm btn-secondary" do
         .fa.fa-sync
 
-%table.table.table-bordered
+%br
+.table-responsive
+  %table.table.table-bordered.table-striped.table-sm
     %thead
         %tr
             %th id
@@ -38,7 +40,7 @@
                     .text-success.far.fa-circle
                 - else
                     .text-danger.far.fa-circle
-          = link_to user.email, user_path(user)
+                = link_to user.email, user_path(user)
             %td= user.created_at
             %td= user.sign_in_count
             %td= user.current_sign_in_at
