@@ -4728,6 +4728,11 @@ nice-try@^1.0.4:
   resolved "https://registry.npmjs.org/nice-try/-/nice-try-1.0.5.tgz"
   integrity sha512-1nh45deeb5olNY7eX82BkPO7SSxR5SSYJiPTrTdFUVYwAl8CKMA5N9PjTYkHiRjisVcxcQ1HXdLhx2qxxJzLNQ==
 
+node-bin-setup@^1.0.0:
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/node-bin-setup/-/node-bin-setup-1.1.3.tgz#d45d5220e3b2ecc3a94263a56116f727f6c1bb14"
+  integrity sha512-opgw9iSCAzT2+6wJOETCpeRYAQxSopqQ2z+N6BXwIMsQQ7Zj5M8MaafQY8JMlolRR6R1UXg2WmhKp0p9lSOivg==
+
 node-forge@^0.10.0:
   version "0.10.0"
   resolved "https://registry.npmjs.org/node-forge/-/node-forge-0.10.0.tgz"
@@ -4766,6 +4771,13 @@ node-releases@^2.0.14:
   version "2.0.14"
   resolved "https://registry.npmjs.org/node-releases/-/node-releases-2.0.14.tgz"
   integrity sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==
+
+node@16.13.0:
+  version "16.13.0"
+  resolved "https://registry.yarnpkg.com/node/-/node-16.13.0.tgz#36fb9c9752f23efe55851de12c253a4084e7148a"
+  integrity sha512-bCUq6u/0rVHBvCpxLFTv5/kPjJGTltcyWQ2EtqlZ6WOqSpkTVBFtNoJ9tSVIGmadb0KoRsWd2CyNs9bU/drxXQ==
+  dependencies:
+    node-bin-setup "^1.0.0"
 
 normalize-path@^2.1.1:
   version "2.1.1"
