@@ -64,4 +64,5 @@ gem "rolify"
 gem "pundit", "~> 2.3"
 gem 'exception_notification'
 gem "pagy"
+gem 'dotenv-rails'
 
