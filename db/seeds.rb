@@ -1,7 +1,7 @@
 user = User.new(
-  email: 'student@example.com', 
-  password: 'student@example.com', 
-  password_confirmation: 'student@example.com'
+  email: 'admin@example.com', 
+  password: 'admin@example.com', 
+  password_confirmation: 'admin@example.com'
 )
 user.skip_confirmation!
 user.save!
