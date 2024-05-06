@@ -3,7 +3,6 @@ class CoursesController < ApplicationController
 
   # GET /courses or /courses.json
   def index
-    byebug
     @ransack_path = courses_path
     @ransack_courses = Course.ransack(params[:courses_search], search_key: :courses_search)    
     @pagy, @courses = pagy(@ransack_courses.result.includes(:user))
