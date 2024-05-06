@@ -16,6 +16,8 @@ class Enrollment < ApplicationRecord
 
   scope :pending_review, -> { where(rating: [0, nil, ""], review: [0, nil, ""]) }
   scope :reviewed, -> { where.not(review: [0, nil, ""]) }
+  scope :latest_good_reviews, -> { order(rating: :desc, created_at: :desc).limit(3) }
+
 
   after_save do
     unless rating.nil? || rating.zero?
