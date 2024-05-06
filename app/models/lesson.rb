@@ -1,5 +1,7 @@
 class Lesson < ApplicationRecord
     belongs_to :course, counter_cache: true
+    has_many :user_lessons
+
     validates :title, :content, :course, presence: true
 
     include PublicActivity::Model
@@ -9,4 +11,9 @@ class Lesson < ApplicationRecord
 
     extend FriendlyId
     friendly_id :title, use: :slugged
+
+    def viewed(user)
+        self.user_lessons.where(user: user).present?
+        #self.user_lessons.where(user_id: [user.id], lesson_id: [self.id]).empty?
+    end
 end
