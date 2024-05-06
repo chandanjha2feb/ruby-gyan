@@ -25,4 +25,8 @@ class CoursePolicy < ApplicationPolicy
   def update?
     @user.has_role?(:teacher, @user) || @record.user == @user
   end
+
+  def owner?
+    @record.user == @user
+  end
 end

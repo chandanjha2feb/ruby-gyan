@@ -5,7 +5,7 @@ class Course < ApplicationRecord
     extend FriendlyId
     friendly_id :title, use: :slugged
 
-    belongs_to :user
+    belongs_to :user, counter_cache: true
     has_many :lessons, dependent: :destroy
     has_many :enrollments
 

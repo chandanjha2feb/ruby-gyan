@@ -4,7 +4,7 @@ class Enrollment < ApplicationRecord
   friendly_id :to_s, use: :slugged
 
   belongs_to :course, counter_cache: true
-  belongs_to :user
+  belongs_to :user, counter_cache: true
 
   validates_uniqueness_of :user_id, scope: :course_id  #user cant be subscribed to the same course twice
   validates_uniqueness_of :course_id, scope: :user_id  #user cant be subscribed to the same course twice
