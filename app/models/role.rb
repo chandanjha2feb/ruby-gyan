@@ -13,5 +13,5 @@ class Role < ApplicationRecord
   scopify
 
   validates :name, presence: true
-  validates_uniqueness_of :name 
+  validates_uniqueness_of :name, scope: :resource_id
 end

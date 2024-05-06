@@ -25,6 +25,9 @@
       .row
       = review_button(course)
   .card-footer
+    .text-warning.fa.fa-star
+    %b= course.average_rating
+  .card-footer
     .row
       .col-md-6
         .far.fa-clock
