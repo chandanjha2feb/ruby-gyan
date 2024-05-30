@@ -11,20 +11,6 @@ class HomeController < ApplicationController
   end
 
   def activities
-    if current_user.has_role?(:admin, current_user)
-      @activities = PublicActivity::Activity.all
-    else
-      redirect_to root_path, alert: "You are not authorized to access this page"
-    end
-  end
-
-  def analytics
-    if current_user.has_role?(:admin, current_user)
-      @users = User.all
-      @enrollments = Enrollment.all
-      @courses = Course.all
-    else
-      redirect_to root_path, alert: "You are not authorized to access this page"
-    end
+    @activities = PublicActivity::Activity.all
   end
 end

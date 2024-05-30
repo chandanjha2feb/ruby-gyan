@@ -12,6 +12,5 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'activity', to: 'home#activity'
   get 'privacy_policy', to: "static_pages#privacy_policy"
-  get 'analytics', to: 'home#analytics'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
