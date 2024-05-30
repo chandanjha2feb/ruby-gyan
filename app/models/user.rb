@@ -4,9 +4,9 @@ class User < ApplicationRecord
   rolify
   resourcify
   
-  has_many :courses, dependent: :destroy
-  has_many :enrollments
-  has_many :user_lessons
+  has_many :courses, dependent: :nullify
+  has_many :enrollments, dependent: :nullify
+  has_many :user_lessons, dependent: :nullify
 
   after_create :assign_default_role
 
