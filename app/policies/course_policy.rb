@@ -7,7 +7,6 @@ class CoursePolicy < ApplicationPolicy
   end
 
   def show?
-    byebug
     @record.published && @record.approved || 
     @user.present? && @user.has_role?(:admin, @user) || 
     @user.present? && @record.user_id == @user.id || 

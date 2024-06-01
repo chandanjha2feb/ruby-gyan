@@ -10,7 +10,11 @@ class HomeController < ApplicationController
     @purchased_courses = Course.joins(:enrollments).where(enrollments: {user: current_user}).order(created_at: :desc).limit(3)
   end
 
-  def activities
-    @activities = PublicActivity::Activity.all
+  def activity
+    if current_user.has_role?(:admin, current_user)
+      @pagy, @activities = pagy(PublicActivity::Activity.all.order(created_at: :desc))
+    else
+      redirect_to root_path, alert: "You are not authorized to access this page"
+    end
   end
 end
