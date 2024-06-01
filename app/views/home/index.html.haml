@@ -50,42 +50,48 @@
 
 %p
 
-%h2
-  .fa.fa-user-graduate
-  Continue Learning
-.card-columns
-  - @purchased_courses.each do |course|
-    = render 'courses/course', course: course
+- if current_user
+  %h2
+    .fa.fa-user-graduate
+    Continue Learning
+  .row.row-cols-1.row-cols-md-2.g-4
+    - @purchased_courses.each do |course|
+      .col
+        = render 'courses/course', course: course
 
 %hr
 %h2
   .fa.fa-chart-line
   Popular courses
-.card-columns
+.row.row-cols-1.row-cols-md-2.g-4
   - @popular.each do |course|
-    = render 'courses/course', course: course
+    .col
+      = render 'courses/course', course: course
 
 %hr
 %h2
   .fa.fa-star
   Top rated courses
-.card-columns
+.row.row-cols-1.row-cols-md-2.g-4
   - @top_rated.each do |course|
-    = render 'courses/course', course: course
+    .col
+      = render 'courses/course', course: course
 
 %hr
 %h2
   .fa.fa-clock
   Latest courses
-.card-columns
+.row.row-cols-1.row-cols-md-2.g-4
   - @latest.each do |course|
-    = render 'courses/course', course: course
+    .col
+      = render 'courses/course', course: course
 
 %hr
 %h2 
   .fa.fa-comment
   What our students have to say
-.card-columns
+.row.row-cols-1.row-cols-md-2.g-4
   - @latest_good_reviews.each do |enrollment|
-    = render 'enrollments/enrollment', enrollment: enrollment
+    .col
+      = render 'enrollments/enrollment', enrollment: enrollment
   

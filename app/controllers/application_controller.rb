@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
     include Pagy::Backend
 
     before_action :authenticate_user!
-    after_action :user_activity
+    after_action :user_activity, if: :user_signed_in?
 
     include PublicActivity::StoreController #save current_user using gem public_activity
     include Pundit::Authorization
