@@ -54,7 +54,7 @@ class Course < ApplicationRecord
   end
 
   def bought(user)
-    self.enrollments.where(user_id: [user.id], course_id: [self.id]).empty?
+    self.enrollments.where(user_id: [user.id], course_id: [self.id]).exists?
   end
 
   def update_rating
