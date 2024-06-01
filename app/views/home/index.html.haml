@@ -22,7 +22,7 @@
   .card.card-body
     %h1
       .fa.fa-graduation-cap
-    = Course.all.count
+    = pluralize(Course.approved.published.count, 'online courses')
     online courses
     .row
     Explore a variety of fresh topics
