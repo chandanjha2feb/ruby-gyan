@@ -16,9 +16,9 @@
 = search_form_for @q, url: @ransack_paths do |f|
   = f.search_field :user_email_cont, placeholder: 'user email'
   = f.search_field :course_title_cont, placeholder: 'course title'
+  = f.search_field :course_user_email_cont, placeholder: 'teacher'
   = f.search_field :price_eq, placeholder: 'price'
   = f.search_field :rating_eq, placeholder: 'rating'
-  = f.search_field :review_cont, placeholder: 'review'
   = f.submit
 = link_to 'refresh',  @ransack_path
 
@@ -50,7 +50,6 @@
     %tbody
       - @enrollments.each do |enrollment|
         %tr
-          %td= enrollment.id
           %td= link_to enrollment.user.email, user_path(enrollment.user)
           %td= enrollment.created_at.strftime("%d/%b/%Y, %H:%M")
           %td= link_to enrollment.course, course_path(enrollment.course)

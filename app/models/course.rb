@@ -17,7 +17,7 @@ class Course < ApplicationRecord
   has_rich_text :description
 
   LANGUAGES = [:"English", :"Russian", :"Polish", :"Spanish"]
-  LEVELS = [:"Beginner", :"Intermediate", :"Advanced"]
+  LEVELS = [:"All levels", :"Beginner", :"Intermediate", :"Advanced"]
 
   scope :latest, -> { limit(3).order(created_at: :desc) }
   scope :top_rated, -> { limit(3).order(average_rating: :desc, created_at: :desc) }
