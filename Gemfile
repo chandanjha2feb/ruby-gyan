@@ -66,3 +66,4 @@ gem 'exception_notification'
 gem "pagy"
 gem 'dotenv-rails'
 gem 'rails-erd', group: :development
+gem 'ranked-model'
