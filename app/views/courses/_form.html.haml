@@ -5,6 +5,12 @@
 
   .form-inputs
     = f.input :title
+    = f.label :avatar
+    .row
+    - if @course.avatar.attached?
+      = image_tag @course.avatar, width: "200px"
+    .row
+      = f.file_field :avatar
     = f.label :description
     = f.rich_text_area :description
     = f.input :short_description

@@ -67,3 +67,6 @@ gem "pagy"
 gem 'dotenv-rails'
 gem 'rails-erd', group: :development
 gem 'ranked-model'
+gem "image_processing", ">= 1.2"
+gem "chartkick"
+gem 'groupdate'

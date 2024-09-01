@@ -84,29 +84,32 @@
                   = link_to unapproved_courses_path, class: "dropdown-item" do
                     .fa.fa-graduation-cap
                     Unapproved courses
-                    .badge.badge-danger
+                    .badge.bg-danger
                       = Course.unapproved.count
                 %li
                   = link_to users_path, class: "dropdown-item" do
                     .fa.fa-users
                     Users 
-                    .badge.badge-danger
+                    .badge.bg-danger
                       = User.count
                 %li
                   = link_to enrollments_path, class: "dropdown-item" do
                     .fa.fa-lock-open
                     Enrollments
-                    .badge.badge-danger
+                    .badge.bg-danger
                       = Enrollment.count
+                %li
+                  = link_to activity_path, class: "dropdown-item" do
+                    .fa.fa-bell
+                    Activity
+                %li
+                  = link_to analytics_path, class: "dropdown-item" do
+                    .fa.fa-chart-line
+                    Analytics
               /%li.nav-item{class: "#{'active font-weight-bold' if current_page?(activity_path)}"}
               /  = link_to activity_path, class: 'nav-link' do
               /    .fa.fa-bell
               /    Activity
-          %ul.navbar-nav.mr-right
-            %li.nav-item{class: "#{'active font-weight-bold' if current_page?(activity_path)}"}
-              = link_to activity_path, class: 'nav-link' do
-                .fa.fa-bell
-                Activity
             %li.nav-item.dropdown
               %a#navbarDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
                 %b= current_user.username

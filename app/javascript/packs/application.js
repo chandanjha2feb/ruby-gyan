@@ -12,12 +12,11 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-import 'bootstrap/dist/js/bootstrap'
-import 'bootstrap/dist/css/bootstrap'
-require("stylesheets/application.scss")
-import "@fortawesome/fontawesome-free/css/all"
-
-
-
 require("trix")
 require("@rails/actiontext")
+import 'bootstrap/dist/js/bootstrap'
+import 'bootstrap/dist/css/bootstrap'
+require("stylesheets/application.scss");
+import "@fortawesome/fontawesome-free/css/all"
+import "chartkick"
+//import "Chart.bundle"

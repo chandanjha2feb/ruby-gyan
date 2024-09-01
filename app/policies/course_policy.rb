@@ -17,6 +17,10 @@ class CoursePolicy < ApplicationPolicy
     @record.user == @user
   end
 
+  def analytics?
+    @record.user == @user
+  end
+
   def create?
     @user.has_role?(:teacher, @user) || @record.user == @user
   end

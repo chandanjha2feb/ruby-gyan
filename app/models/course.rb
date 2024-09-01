@@ -15,6 +15,7 @@ class Course < ApplicationRecord
   validates :description, presence: true, length: { :minimum => 5 }
 
   has_rich_text :description
+  has_one_attached :avatar
 
   LANGUAGES = [:"English", :"Russian", :"Polish", :"Spanish"]
   LEVELS = [:"All levels", :"Beginner", :"Intermediate", :"Advanced"]

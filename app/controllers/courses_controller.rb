@@ -1,6 +1,6 @@
 class CoursesController < ApplicationController
   skip_before_action :authenticate_user!, :only => [:show]
-  before_action :set_course, only: %i[show edit update destroy approve unapprove]
+  before_action :set_course, only: %i[show edit update destroy approve unapprove analytics] 
 
   # GET /courses or /courses.json
   def index
@@ -68,6 +68,10 @@ class CoursesController < ApplicationController
     authorize @course
   end
 
+  def analytics
+    authorize @course
+  end
+
   # POST /courses or /courses.json
   def create
     @course = current_user.courses.new(course_params)
@@ -119,6 +123,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, :price, :level, :language, :published)
+      params.require(:course).permit(:title, :description, :short_description, :price, :level, :language, :published, :avatar)
     end
 end
