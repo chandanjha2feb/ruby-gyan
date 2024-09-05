@@ -70,3 +70,4 @@ gem 'ranked-model'
 gem "image_processing", ">= 1.2"
 gem "chartkick"
 gem 'groupdate'
+gem 'cloudinary'

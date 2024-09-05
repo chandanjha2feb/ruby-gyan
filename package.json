@@ -15,6 +15,7 @@
     "chart.js": "^4.4.4",
     "chartkick": "^5.0.1",
     "jquery": "^3.7.1",
+    "jquery-ui-dist": "^1.13.3",
     "node": "16.13.0",
     "popper.js": "^1.16.1",
     "trix": "^1.2.0",
