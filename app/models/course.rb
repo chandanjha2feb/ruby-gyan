@@ -28,6 +28,10 @@ class Course < ApplicationRecord
   scope :approved, -> { where(approved: true) }
   scope :unapproved, -> { where(approved: false) }
 
+  validates :avatar, attached: true, 
+    content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
+    size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
+
 
   def self.languages
     LANGUAGES.map { |language| [language, language] }
