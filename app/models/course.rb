@@ -10,7 +10,7 @@ class Course < ApplicationRecord
   has_many :enrollments, dependent: :restrict_with_error
   has_many :user_lessons, through: :lessons
 
-  validates :title, :short_description, :level, :price, :language,  presence: true
+  validates :title, :description, :short_description, :level, :price, :language,  presence: true
   validates :title, uniqueness: true, length: { maximum: 70 }
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   validates :description, length: { minimum: 5 }

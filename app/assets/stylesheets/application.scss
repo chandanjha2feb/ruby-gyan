@@ -12,3 +12,11 @@
  *
  */
  //@import "./actiontext.scss"
+
+ //header navbar dropdown on top of all other content
+.dropdown {z-index: 9999;}
+
+//simple_form input for rich_text_area
+trix-editor.form-control {
+  height: auto;
+}
