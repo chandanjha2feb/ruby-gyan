@@ -28,3 +28,4 @@ import "chartkick"
 // $(function() {
 //   $("#draggable").draggable();
 // });
+import "../trix-editor-overides"

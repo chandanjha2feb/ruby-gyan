@@ -11,8 +11,13 @@ class Course < ApplicationRecord
   has_many :user_lessons, through: :lessons
 
   validates :title, :short_description, :level, :price, :language,  presence: true
-  validates :title, uniqueness: true
-  validates :description, presence: true, length: { :minimum => 5 }
+  validates :title, uniqueness: true, length: { maximum: 70 }
+  validates :price, numericality: { greater_than_or_equal_to: 0 }
+  validates :description, length: { minimum: 5 }
+  validates :short_description, length: { maximum: 300 }
+  validates :avatar, presence: true, 
+    content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
+    size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
 
   has_rich_text :description
   has_one_attached :avatar
@@ -27,11 +32,6 @@ class Course < ApplicationRecord
   scope :unpublished, -> { where(published: false) }
   scope :approved, -> { where(approved: true) }
   scope :unapproved, -> { where(approved: false) }
-
-  validates :avatar, attached: true, 
-    content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
-    size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
-
 
   def self.languages
     LANGUAGES.map { |language| [language, language] }
