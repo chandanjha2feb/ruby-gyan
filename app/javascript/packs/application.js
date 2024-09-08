@@ -19,6 +19,9 @@ import 'bootstrap/dist/css/bootstrap'
 require("stylesheets/application.scss");
 import "@fortawesome/fontawesome-free/css/all"
 import "chartkick"
+
+import videojs from 'video.js'
+import 'video.js/dist/video-js.css'
 //import "Chart.bundle"
 
 // require("jquery") // yarn add jquery
@@ -29,3 +32,19 @@ import "chartkick"
 //   $("#draggable").draggable();
 // });
 import "../trix-editor-overides"
+$(document).on('turbolinks:load', function(){
+    let videoPlayer = videojs(document.getElementById('my-video'), {
+        controls: true,
+        playbackRates: [0.5, 1, 1.5],
+        autoplay: false,
+        fluid: true,
+        preload: false,
+        autoplay: false,
+        liveui: true,
+        responsive: true,
+        loop: false,
+        poster: "https://i.imgur.com/EihmtGG.jpg"
+    })
+    videoPlayer.addClass('video-js');
+    videoPlayer.addClass('vjs-big-play-centered');
+})
