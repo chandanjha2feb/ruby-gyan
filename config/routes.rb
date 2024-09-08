@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     end
     resources :enrollments, only: [:new, :create]
   end
+  resources :youtube, only: :show
   resources :users
   root 'home#index'
   get 'activity', to: 'home#activity'
