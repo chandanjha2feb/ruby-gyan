@@ -88,6 +88,7 @@ test:
 #
 production:
   <<: *default
-  database: ruby_gems_bootcamp_production
-  username: ruby_gems_bootcamp
-  password: <%= ENV['RUBY_GEMS_BOOTCAMP_DATABASE_PASSWORD'] %>
+  database: Rails.application.credentials.heroku_postgres[:dbname]
+  username: Rails.application.credentials.heroku_postgres[:user]
+  password: Rails.application.credentials.heroku_postgres[:password]
+  host: Rails.application.credentials.heroku_postgres[:host]
