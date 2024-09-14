@@ -20,3 +20,11 @@
 trix-editor.form-control {
   height: auto;
 }
+
+
+//hide simple_form checkmarks
+.form-control.is-invalid{ background-image: none; }
+.form-control.is-valid{ background-image: none; }
+
+//highlight drag and drop
+.ui-state-highlight { height: 3em; line-height: 1.2em; background-color: yellow; }

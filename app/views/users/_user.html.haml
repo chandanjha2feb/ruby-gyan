@@ -31,9 +31,17 @@
         Courses created:
         = user.courses_count
         .row
+        .fa.fa-eye
+        Lessons viewed:
+        = user.user_lessons_count
+        .row
         .fa.fa-lock-open
         Enrollments:
         = user.enrollments_count
+        .row
+        .fa.fa-comment
+        Comments:
+        = user.comments_count
     .card-footer
         - user.roles.each do |role|
             .btn.btn-primary

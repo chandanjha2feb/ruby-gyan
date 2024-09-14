@@ -15,9 +15,13 @@ module ApplicationHelper
     def model_label(model)
         case model
             when 'Course'
-            "<i class='fa fa-graduation-cap'></i>".html_safe
+                "<i class='fa fa-graduation-cap'></i>".html_safe
             when 'Lesson'
-            "<i class='fa fa-tasks'></i>".html_safe
+                "<i class='fa fa-check-square'></i>".html_safe
+            when 'Enrollment'
+                "<i class='fa fa-lock-open'></i>".html_safe
+            when 'Comment'
+                "<i class='fa fa-comment'></i>".html_safe
         end
     end
 end

@@ -21,6 +21,11 @@
           = link_to activity.trackable.title, course_lesson_path(activity.trackable.course, activity.trackable)
         - else
           Lesson was deleted
+      - elsif activity.trackable_type == "Comment"
+        - if Comment.where(id: activity.trackable_id).any?
+          = link_to activity.trackable.content, course_lesson_path(activity.trackable.lesson.course, activity.trackable.lesson)
+        - else
+          Comment was deleted
       - else
         = link_to activity.trackable.title, activity.trackable
       = activity.key
