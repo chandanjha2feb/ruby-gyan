@@ -72,3 +72,4 @@ gem "chartkick"
 gem 'groupdate'
 gem 'cloudinary'
 gem 'active_storage_validations'
+gem 'recaptcha'
