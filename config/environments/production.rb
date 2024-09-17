@@ -126,4 +126,5 @@ Rails.application.configure do
   #     sender_address: %{"corsego error" <support@corsego.herokuapp.com>},
   #     exception_recipients: %w{yshmarov@gmail.com}
   #   }
+  config.action_mailer.default_url_options = { host: 'https://ruby-gyan-852e1ca6f54b.herokuapp.com/' }
 end
