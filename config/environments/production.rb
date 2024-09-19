@@ -127,4 +127,15 @@ Rails.application.configure do
   #     exception_recipients: %w{yshmarov@gmail.com}
   #   }
   config.action_mailer.default_url_options = { host: 'https://ruby-gyan-852e1ca6f54b.herokuapp.com/' }
+  config.action_mailer.delivery_method = :smtp
+
+  # SMTP settings for Gmail
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    user_name: Rails.application.credentials.gmail[:email_address],
+    password: Rails.application.credentials.gmail[:app_password],
+    authentication: "plain",
+    enable_starttls_auto: true
+  }
 end
