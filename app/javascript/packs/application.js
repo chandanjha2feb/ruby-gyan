@@ -7,6 +7,8 @@ import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
+require("jquery-ui-dist/jquery-ui");
+
 
 Rails.start()
 Turbolinks.start()
@@ -50,3 +52,8 @@ import "../youtube"
 //     videoPlayer.addClass('video-js');
 //     videoPlayer.addClass('vjs-big-play-centered');
 // })
+$(document).ready(function(){
+    $("video").bind("contextmenu",function(){
+        return false;
+    });
+});
