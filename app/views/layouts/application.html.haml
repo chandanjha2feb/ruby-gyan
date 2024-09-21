@@ -3,8 +3,9 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %meta{:content => "width=device-width, initial-scale=1.0", :name => "viewport"}/
+    = favicon_link_tag 'ruby-gyan_logo.jpg'
     %title
-      = content_for?(:title) ? yield(:title) : "Corsego"
+      = content_for?(:title) ? yield(:title) : "RubyGyan"
     %meta{:content => "width=device-width,initial-scale=1", :name => "viewport"}/
     = csrf_meta_tags
     = csp_meta_tag
@@ -21,5 +22,5 @@
       %p
       = yield
     %br
-    .bg-dark.text-white
+    .purple-background.text-light
       = render 'layouts/footer'
