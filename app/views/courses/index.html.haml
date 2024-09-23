@@ -20,9 +20,9 @@
       = f.label :description
       = f.search_field :short_description_cont, placeholder: 'Description', class: 'form-control form-control-sm'
       = f.label :language
-      = f.select :language_cont, Course.languages, include_blank: true
+      = f.select :language_cont, Course.languages, include_blank: true, class: "form-select"
       = f.label :level
-      = f.select :level_cont, Course.levels, include_blank: true
+      = f.select :level_cont, Course.levels, include_blank: true, class: "form-select"
       .row
       = sort_link(@ransack_courses, :price)
       = f.search_field :price_eq, placeholder: 'Price', class: 'form-control form-control-sm'

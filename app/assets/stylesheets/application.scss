@@ -12,8 +12,10 @@
  *
  */
  //@import "./actiontext.scss"
+@import "selectize/dist/css/selectize";
+@import "selectize/dist/css/selectize.default";
 
-body { background: #2a4054 !important; color: #ebedf0; }
+body { background: #e1ebe5 !important; color: #ebedf0; }
 .card, .list-group-item { color: #2a4054 !important; }
 .purple-background { background-color: #563d7c !important; }
 .table { background: white; }

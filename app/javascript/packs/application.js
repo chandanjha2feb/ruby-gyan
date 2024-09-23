@@ -2,14 +2,13 @@
 // present in this directory. You're encouraged to place your actual application logic in
 // a relevant structure within app/javascript and only use these pack files to reference
 // that code so it'll be compiled.
-
+import $ from 'jquery';
+window.$ = window.jQuery = $;
 import Rails from "@rails/ujs"
 import Turbolinks from "turbolinks"
 import * as ActiveStorage from "@rails/activestorage"
 import "channels"
 require("jquery-ui-dist/jquery-ui");
-
-
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
@@ -35,6 +34,7 @@ import 'video.js/dist/video-js.css'
 // });
 import "../trix-editor-overides"
 import "../youtube"
+import 'selectize/dist/js/standalone/selectize';// selectize();
 
 // $(document).on('turbolinks:load', function(){
 //     let videoPlayer = videojs(document.getElementById('my-video'), {
@@ -52,8 +52,18 @@ import "../youtube"
 //     videoPlayer.addClass('video-js');
 //     videoPlayer.addClass('vjs-big-play-centered');
 // })
-$(document).ready(function(){
+$(document).on("turbolinks:load", function(){
+    if ($('.selectize').length){
+        console.log("Selectize")
+        $('.selectize').selectize({
+            sortField: 'text'
+        });
+    }
     $("video").bind("contextmenu",function(){
         return false;
     });
 });
+
+$(document).ready(function(){
+    
+})
