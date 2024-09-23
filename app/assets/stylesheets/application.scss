@@ -36,3 +36,6 @@ trix-editor.form-control {
 
 //highlight drag and drop
 .ui-state-highlight { height: 3em; line-height: 1.2em; background-color: yellow; }
+.tag-link:hover {
+  text-decoration: none;
+}
