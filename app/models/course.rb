@@ -77,4 +77,16 @@ class Course < ApplicationRecord
       (user_lessons.where(user: user).count/self.lessons_count).to_f*100
     end
   end
+
+  def similiar_courses
+    self.class.joins(:tags)
+    .where.not(id: id)
+    .where(tags: { id: tags.ids })
+    .select(
+    'courses.*',
+    'COUNT(tags.*) AS tags_in_common'
+    )
+    .group(:id)
+    .order(tags_in_common: :desc)
+  end
 end
