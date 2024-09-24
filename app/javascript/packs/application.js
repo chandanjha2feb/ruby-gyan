@@ -53,12 +53,15 @@ import 'selectize/dist/js/standalone/selectize';// selectize();
 //     videoPlayer.addClass('vjs-big-play-centered');
 // })
 $(document).on("turbolinks:load", function(){
-    if ($('.selectize').length){
-        console.log("Selectize")
-        $('.selectize').selectize({
-            sortField: 'text'
-        });
-    }
+    $(".selectize-tags").selectize({
+        create: function(input, callback) {
+          $.post('/tags.json', { tag: { name: input } })
+            .done(function(response){
+              console.log(response)
+              callback({value: response.id, text: response.name });
+            })
+        }
+    });
     $("video").bind("contextmenu",function(){
         return false;
     });
