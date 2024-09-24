@@ -5,7 +5,6 @@
 
   .form-inputs
     = f.input :title, input_html: { autocomplete: 'off' }
-    = f.select :tag_ids,  @tags.all.pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" }
     /= f.label :avatar
     .row
     - if @course.avatar.attached?
@@ -26,6 +25,8 @@
     = f.input :level, collection: Course.levels, include_blank: true
     = f.input :price
     = f.input :published
+    = f.label :tags
+    = f.select :tag_ids, @tags.all.pluck(:name, :id), {}, { multiple: true, class: "selectize-tags" }
 
   .form-actions
     = f.button :submit, class: "btn-success"

@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { 
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'  }
-  resources :tags, only: :create
+  resources :tags, only: [:create, :index, :destroy]
   resources :courses do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
     member do
