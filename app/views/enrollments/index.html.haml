@@ -46,6 +46,7 @@
           .text-warning.fa.fa-comment
           Review
         %th Progress
+        %th Certificate
 
     %tbody
       - @enrollments.each do |enrollment|
@@ -59,6 +60,7 @@
               = enrollment.updated_at.strftime("%d/%b/%Y, %H:%M")
           %td= enrollment.rating
           %td= number_to_percentage(enrollment.course.progress(enrollment.user), precision: 0)
+          %td= link_to 'Certificate', certificate_enrollment_path(enrollment, format: :pdf)
           %td= number_to_currency(enrollment.price)
           %td= link_to 'See Review', enrollment
           %td

@@ -78,12 +78,7 @@ class EnrollmentsController < ApplicationController
       format.pdf do
         render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
         page_size: 'A4',
-        template: "enrollments/show.pdf.haml",
-        layout: "pdf.html.haml",
-        orientation: "Landscape",
-        lowquality: true,
-        zoom: 1,
-        dpi: 75
+        template: "enrollments/show.pdf.haml"
       end
     end
   end
@@ -91,7 +86,6 @@ class EnrollmentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_enrollment
-      byebug
       @enrollment = Enrollment.friendly.find(params[:id])
     end
 
