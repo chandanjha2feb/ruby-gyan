@@ -79,4 +79,5 @@ gem 'omniauth-rails_csrf_protection'
 gem 'omniauth-github', '~> 2.0.0'
 gem 'omniauth-facebook'
 gem 'wicked_pdf' #PDF for Ruby on Rails
-gem 'wkhtmltopdf-binary' #PDF dependancy
+gem 'wkhtmltopdf-binary', group: :development
+gem 'wkhtmltopdf-heroku', group: :production
