@@ -1,5 +1,6 @@
 class EnrollmentsController < ApplicationController
-  before_action :set_enrollment, only: %i[ show edit update destroy ]
+  skip_before_action :authenticate_user!, :only => [:certificate]
+  before_action :set_enrollment, only: [:show, :edit, :update, :destroy, :certificate]
 
   # GET /enrollments or /enrollments.json
   def index
@@ -71,9 +72,26 @@ class EnrollmentsController < ApplicationController
     end
   end
 
+  def certificate
+    respond_to do |format|
+      format.html
+      format.pdf do
+        render pdf: "#{@enrollment.course.title}, #{@enrollment.user.email}",
+        page_size: 'A4',
+        template: "enrollments/show.pdf.haml",
+        layout: "pdf.html.haml",
+        orientation: "Landscape",
+        lowquality: true,
+        zoom: 1,
+        dpi: 75
+      end
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_enrollment
+      byebug
       @enrollment = Enrollment.friendly.find(params[:id])
     end
 
