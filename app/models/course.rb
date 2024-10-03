@@ -17,7 +17,8 @@ class Course < ApplicationRecord
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   validates :description, length: { minimum: 5 }
   validates :short_description, length: { maximum: 300 }
-  validates :avatar, presence: true, 
+  validates :avatar, presence: true, on: :update
+  validates :avatar,
     content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
     size: { less_than: 500.kilobytes , message: 'size should be under 500 kilobytes' }
 

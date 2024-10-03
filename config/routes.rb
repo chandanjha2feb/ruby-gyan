@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     registrations: "users/registrations",
     omniauth_callbacks: 'users/omniauth_callbacks'  }
   resources :tags, only: [:create, :index, :destroy]
-  resources :courses do
+  resources :courses, except: [:edit] do
     get :purchased, :pending_review, :created, :unapproved, on: :collection
     member do
       get :analytics
@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
     end
     resources :enrollments, only: [:new, :create]
+    resources :course_wizard, controller: "courses/course_wizard"
   end
   resources :youtube, only: :show
   resources :users

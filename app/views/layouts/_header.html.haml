@@ -14,7 +14,7 @@
           %li.nav-item{class: "#{'active font-weight-bold' if current_page?(courses_path)}"}
             = link_to courses_path, class: 'nav-link' do
               .fa.fa-graduation-cap
-              Courses
+              Courses            
           .form-inline
           /SEARCH IN NAVBAR
           = search_form_for @ransack_courses, as: :courses_search, url: courses_path do |f|

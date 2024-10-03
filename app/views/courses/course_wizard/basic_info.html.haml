@@ -1,0 +1,13 @@
+= render layout: 'courses/course_wizard/step' do
+  = simple_form_for @course, url: course_course_wizard_path, method: :put do |f|
+    = f.input :title, input_html: { autocomplete: 'off' }
+    .row
+    - if @course.avatar.attached?
+      = image_tag @course.avatar, width: "200px"
+      .row
+      = @course.avatar.filename
+    .row
+    = f.input :avatar
+    = f.input :description, as: :rich_text_area
+    = f.input :short_description
+    = f.button :submit, class: "btn-success"

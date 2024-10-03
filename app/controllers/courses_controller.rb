@@ -69,12 +69,6 @@ class CoursesController < ApplicationController
     @tags = Tag.all.where.not(course_tags_count: 0).order(course_tags_count: :desc)
   end
 
-  # GET /courses/1/edit
-  def edit
-    authorize @course
-    @tags = Tag.all.where.not(course_tags_count: 0).order(course_tags_count: :desc)
-  end
-
   def analytics
     authorize @course
   end
@@ -83,29 +77,16 @@ class CoursesController < ApplicationController
   def create
     @course = current_user.courses.new(course_params)
     authorize @course
+    @course.description = 'Curriculum Description'
+    @course.short_description = 'Marketing Description'
 
     respond_to do |format|
       if @course.save
-        format.html { redirect_to course_url(@course), notice: "Course was successfully created." }
+        format.html { redirect_to course_course_wizard_index_path(@course), notice: "Course was successfully created." }
         format.json { render :show, status: :created, location: @course }
       else
         @tags = Tag.all.where.not(course_tags_count: 0).order(course_tags_count: :desc)
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @course.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /courses/1 or /courses/1.json
-  def update
-    authorize @course
-    respond_to do |format|
-      if @course.update(course_params)
-        format.html { redirect_to course_url(@course), notice: "Course was successfully updated." }
-        format.json { render :show, status: :ok, location: @course }
-      else
-        @tags = Tag.all.where.not(course_tags_count: 0).order(course_tags_count: :desc)
-        format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @course.errors, status: :unprocessable_entity }
       end
     end

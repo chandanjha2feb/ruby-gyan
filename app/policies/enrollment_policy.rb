@@ -22,7 +22,6 @@ class EnrollmentPolicy < ApplicationPolicy
     end
 
     def certificate?
-      byebug
       #course has as many lessons as the user has viewed for this course
       @record.course.lessons_count == @record.course.user_lessons.where(user: @record.user).count
     end
