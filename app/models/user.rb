@@ -11,6 +11,9 @@ class User < ApplicationRecord
 
 
   after_create :assign_default_role
+  after_create do
+    UserMailer.new_user(self).deliver_later
+  end
 
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -71,6 +74,10 @@ class User < ApplicationRecord
     else
       self.user_lessons.create(lesson: lesson)
     end
+  end
+
+  def buy_course(course)
+    enrollments.create!(course: course, price: course.price)
   end
 
   private
