@@ -1,14 +1,26 @@
 - content_for :title do
   Corsego 
-  \| 
+  | 
   New enrollment
 
-.card
+.card.shadow
   .card-header
     %h3
+      .fa.fa-graduation-cap
+      = link_to @course.title, course_path(@course)
+      %hr
       .fa.fa-lock-open
-      New enrollment
+      Buy course
   .card-body
-    = render 'form'
+    /if free
+    = form_tag course_enrollments_path(@course) do
+      = hidden_field_tag 'enrollment[course_id]', @course.id
+      %script.stripe-button{"data-amount" => "#{(@course.price * 100).to_i}",
+                            "data-description" => "#{@course.title} (#{number_to_currency @course.price})",
+                            "data-email" => "#{current_user.email}",
+                            "data-key" => "pk_test_51Q6yhqJaJ5luI6mQmxvEdWB4wdq5BDjF4dFgnrGHgvtSQ83L7Iu8rFxFAFFg778KO8PwQnPDNsvh32mqOpg2d9Js00IZV4C7gV",
+                            "data-locale" => "auto",
+                            :src => "https://checkout.stripe.com/checkout.js"}
+
   .card-footer
-    = link_to 'Back', enrollments_path
+    = link_to 'Back', course_path(@course)

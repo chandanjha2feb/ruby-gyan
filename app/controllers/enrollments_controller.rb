@@ -1,6 +1,7 @@
 class EnrollmentsController < ApplicationController
   skip_before_action :authenticate_user!, :only => [:certificate]
   before_action :set_enrollment, only: [:show, :edit, :update, :destroy, :certificate]
+  before_action :set_course, only: [:new, :create]
 
   # GET /enrollments or /enrollments.json
   def index
@@ -35,18 +36,31 @@ class EnrollmentsController < ApplicationController
   # POST /enrollments or /enrollments.json
   def create
     @course = Course.friendly.find(enrollment_params[:course_id])
-    @enrollment = current_user.buy_course(@course)
     respond_to do |format|
-      if @enrollment.errors.blank?
-        EnrollmentMailer.student_enrollment(@enrollment).deliver_later
-        EnrollmentMailer.teacher_enrollment(@enrollment).deliver_later
-        format.html { redirect_to enrollment_url(@enrollment), notice: "You are enrolled!" }
-        format.json { render :show, status: :created, location: @enrollment }
+      if @course.price > 0
+        @amount = (@course.price * 100).to_i
+        customer = Stripe::Customer.create(
+          email: params[:stripeEmail],
+          source: params[:stripeToken]
+        )
+        charge = Stripe::Charge.create(
+          customer:    customer.id,
+          amount:      @amount,
+          description: 'Corsego Premium Content',
+          currency:    'usd'
+        )
+        @enrollment = current_user.buy_course(@course)
+        format.html { redirect_to enrollment_url(@enrollment), notice: "You are enrolled!"}
       else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @enrollment.errors, status: :unprocessable_entity }
+        @enrollment = current_user.buy_course(@course)
+        redirect_to course_path(@course), notice: "You are enrolled!"
       end
+      EnrollmentMailer.student_enrollment(@enrollment).deliver_later
+      EnrollmentMailer.teacher_enrollment(@enrollment).deliver_later
     end
+  rescue Stripe::CardError => e
+    flash[:error] = e.message
+    redirect_to new_course_enrollment_path(@course)
   end
 
   # PATCH/PUT /enrollments/1 or /enrollments/1.json
@@ -87,13 +101,17 @@ class EnrollmentsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_enrollment
-      @enrollment = Enrollment.friendly.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def enrollment_params
-      params.require(:enrollment).permit(:course_id, :user_id, :rating, :review)
-    end
+  def set_course
+    @course = Course.friendly.find(params[:course_id])
+  end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_enrollment
+    @enrollment = Enrollment.friendly.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def enrollment_params
+    params.require(:enrollment).permit(:course_id, :user_id, :rating, :review)
+  end
 end

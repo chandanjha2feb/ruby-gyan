@@ -84,3 +84,4 @@ gem 'wkhtmltopdf-binary', group: :development
 gem 'wkhtmltopdf-heroku', group: :production
 gem 'wicked'
 gem "cocoon"
+gem 'stripe'
