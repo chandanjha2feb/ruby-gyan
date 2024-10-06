@@ -7,10 +7,12 @@ class Course < ApplicationRecord
 
   belongs_to :user, counter_cache: true
   has_many :lessons, dependent: :destroy
-  has_many :enrollments, dependent: :restrict_with_error
+  has_many :enrollments, dependent: :restrict_with_error, inverse_of: :course
   has_many :user_lessons, through: :lessons
   has_many :course_tags
   has_many :tags, through: :course_tags
+
+  accepts_nested_attributes_for :lessons, reject_if: :all_blank, allow_destroy: true
 
   validates :title, :description, :short_description, :level, :price, :language,  presence: true
   validates :title, uniqueness: true, length: { maximum: 70 }

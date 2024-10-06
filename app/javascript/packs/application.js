@@ -35,6 +35,7 @@ import 'video.js/dist/video-js.css'
 import "../trix-editor-overides"
 import "../youtube"
 import 'selectize/dist/js/standalone/selectize';// selectize();
+require("@nathanvda/cocoon")
 
 // $(document).on('turbolinks:load', function(){
 //     let videoPlayer = videojs(document.getElementById('my-video'), {
