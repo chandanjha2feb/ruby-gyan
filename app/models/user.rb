@@ -1,5 +1,6 @@
 class User < ApplicationRecord
   include PublicActivity::Model
+  tracked only: [:create, :destroy], owner: :itself
 
   rolify
   resourcify
