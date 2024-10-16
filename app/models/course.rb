@@ -14,11 +14,11 @@ class Course < ApplicationRecord
 
   accepts_nested_attributes_for :lessons, reject_if: :all_blank, allow_destroy: true
 
-  validates :title, :description, :short_description, :level, :price, :language,  presence: true
+  validates :title, :description, :marketing_description, :level, :price, :language,  presence: true
   validates :title, uniqueness: true, length: { maximum: 70 }
   validates :price, numericality: { greater_than_or_equal_to: 0 }
   validates :description, length: { minimum: 5 }
-  validates :short_description, length: { maximum: 300 }
+  validates :marketing_description, length: { maximum: 300 }
   validates :avatar, presence: true, on: :update
   validates :avatar,
     content_type: ['image/png', 'image/jpg', 'image/jpeg'], 
@@ -52,7 +52,7 @@ class Course < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["title", "short_description", "level", "price", "language", "enrollments_count", "average_rating", "created_at", "tags_name_cont_any"]
+    ["title", "marketing_description", "level", "price", "language", "enrollments_count", "average_rating", "created_at", "tags_name_cont_any"]
   end
 
   def self.ransackable_associations(auth_object = nil)

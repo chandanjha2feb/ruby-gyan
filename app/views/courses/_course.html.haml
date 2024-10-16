@@ -6,7 +6,7 @@
     .card-img-top
       = image_tag course.avatar, height: "200px", width: "100%"
   .card-body
-    %small= simple_format(course.short_description)
+    %small= simple_format(course.marketing_description)
   .card-footer
     .text-center
       = number_to_currency(course.price)

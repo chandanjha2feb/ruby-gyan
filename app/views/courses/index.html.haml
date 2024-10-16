@@ -16,9 +16,9 @@
   .col-md-2
     = search_form_for @ransack_courses, as: :courses_search, url: @ransack_path do |f|
       = f.label :title
-      = f.search_field :title_or_short_description_cont, placeholder: 'Title', class: 'form-control form-control-sm'
+      = f.search_field :title_or_marketing_description_cont, placeholder: 'Title', class: 'form-control form-control-sm'
       = f.label :description
-      = f.search_field :short_description_cont, placeholder: 'Description', class: 'form-control form-control-sm'
+      = f.search_field :marketing_description_cont, placeholder: 'Description', class: 'form-control form-control-sm'
       = f.label :tag
       = f.search_field :tags_name_cont_any, placeholder: 'Tag name', class: 'form-control form-control-sm' 
       = f.label :language

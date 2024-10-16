@@ -78,7 +78,7 @@ class CoursesController < ApplicationController
     @course = current_user.courses.new(course_params)
     authorize @course
     @course.description = 'Curriculum Description'
-    @course.short_description = 'Marketing Description'
+    @course.marketing_description = 'Marketing Description'
 
     respond_to do |format|
       if @course.save
@@ -113,6 +113,6 @@ class CoursesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def course_params
-      params.require(:course).permit(:title, :description, :short_description, :price, :level, :language, :published, :avatar, tag_ids: [])
+      params.require(:course).permit(:title, :description, :marketing_description, :price, :level, :language, :published, :avatar, tag_ids: [])
     end
 end

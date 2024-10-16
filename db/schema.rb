@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2024_10_06_123606) do
+ActiveRecord::Schema.define(version: 2024_10_16_143155) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -99,7 +99,7 @@ ActiveRecord::Schema.define(version: 2024_10_06_123606) do
     t.bigint "user_id", null: false
     t.string "slug"
     t.string "language", default: "English", null: false
-    t.text "short_description"
+    t.text "marketing_description"
     t.string "level", default: "Beginner", null: false
     t.integer "price", default: 0, null: false
     t.float "average_rating", default: 0.0, null: false
