@@ -85,3 +85,4 @@ gem 'wkhtmltopdf-heroku', group: :production
 gem 'wicked'
 gem "cocoon"
 gem 'stripe'
+gem 'devise_invitable', '~> 2.0.0'

@@ -103,6 +103,9 @@ GEM
       railties (>= 4.1.0)
       responders
       warden (~> 1.2.3)
+    devise_invitable (2.0.9)
+      actionmailer (>= 5.0)
+      devise (>= 4.6)
     dotenv (3.1.4)
     dotenv-rails (3.1.4)
       dotenv (= 3.1.4)
@@ -397,6 +400,7 @@ DEPENDENCIES
   cloudinary
   cocoon
   devise
+  devise_invitable (~> 2.0.0)
   dotenv-rails
   exception_notification
   faker

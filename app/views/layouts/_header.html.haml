@@ -36,6 +36,11 @@
           /  = link_to enrollments_path, class: 'nav-link' do
           /    .fa.fa-lock-open
           /    Enrollments
+          %ul.navbar-nav.me-auto.mb-2.mb-lg-0
+            %li.nav-item{class: "#{'active font-weight-bold'}"}
+              = link_to new_user_invitation_path, class: 'nav-link' do
+                .fa.fa-plus
+                Invite User
           - if current_user.has_role?(:student, current_user)
             %li.nav-item.dropdown
               %a#studentDropdown.nav-link.dropdown-toggle{"aria-expanded" => "false", "data-bs-toggle" => "dropdown", :href => "#", :role => "button"}
