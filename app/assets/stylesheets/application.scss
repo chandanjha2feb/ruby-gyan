@@ -15,6 +15,11 @@
 @import "selectize/dist/css/selectize";
 @import "selectize/dist/css/selectize.default";
 
+// html {
+// 	position: relative;
+// 	min-height: 100%;
+// }
+
 body { background: #e1ebe5 !important; color: #ebedf0; }
 .card, .list-group-item { color: #2a4054 !important; }
 .purple-background { background-color: #563d7c !important; }
@@ -53,3 +58,13 @@ box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 position:relative;
 z-index: 3;
 }
+
+//footer always on the bottom
+// .footer {
+// 	position: absolute;
+// 	left: 0;
+// 	bottom: 0;
+// 	//height: 200px;
+// 	width: 100%;
+// 	overflow: hidden;
+// } 
