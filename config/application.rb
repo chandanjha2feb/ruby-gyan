@@ -25,6 +25,9 @@ module RubyGemsBootcamp
       ActionText::ContentHelper.allowed_tags.add 'iframe'
     end
 
+    # Use Sidekiq for Active Job
+    config.active_job.queue_adapter = :sidekiq
+
 
     # Configuration for the application, engines, and railties goes here.
     #

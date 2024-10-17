@@ -86,3 +86,6 @@ gem 'wicked'
 gem "cocoon"
 gem 'stripe'
 gem 'devise_invitable', '~> 2.0.0'
+
+gem "sidekiq"
+gem "redis"

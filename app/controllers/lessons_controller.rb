@@ -30,11 +30,22 @@ class LessonsController < ApplicationController
   # POST /lessons or /lessons.json
   def create
     @course = Course.friendly.find(params[:course_id])
-    @lesson = @course.lessons.new(lesson_params)
+    @lesson = @course.lessons.new(lesson_params.except(:video))
     authorize @lesson
     respond_to do |format|
       if @lesson.save
-        format.html { redirect_to course_lesson_path(@course, @lesson), notice: "Lesson was successfully created." }
+        # Create and store a blob for the video
+        if lesson_params[:video].present?
+          # Save the video as a blob and enqueue the job with the signed blob ID
+          video_blob = ActiveStorage::Blob.create_and_upload!(
+            io: lesson_params[:video].tempfile,
+            filename: lesson_params[:video].original_filename,
+            content_type: lesson_params[:video].content_type
+          )
+
+          VideoUploadJob.perform_later(@lesson.id, video_blob.signed_id)
+        end
+        format.html { redirect_to course_lesson_path(@course, @lesson), notice: "Lesson was successfully created. Video upload is in progress if a new video was provided." }
         format.json { render :show, status: :created, location: @lesson }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -46,9 +57,22 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1 or /lessons/1.json
   def update
     authorize @lesson
+    byebug
     respond_to do |format|
-      if @lesson.update(lesson_params)
-        format.html { redirect_to course_lesson_path(@course, @lesson), notice: "Lesson was successfully updated." }
+      if @lesson.update(lesson_params.except(:video))
+        byebug
+         # Create and store a blob for the video
+         if lesson_params[:video].present?
+          # Save the video as a blob and enqueue the job with the signed blob ID
+          video_blob = ActiveStorage::Blob.create_and_upload!(
+            io: lesson_params[:video].tempfile,
+            filename: lesson_params[:video].original_filename,
+            content_type: lesson_params[:video].content_type
+          )
+
+          VideoUploadJob.perform_later(@lesson.id, video_blob.signed_id)
+        end
+        format.html { redirect_to course_lesson_path(@course, @lesson), notice: "Lesson was successfully updated. Video upload is in progress if a new video was provided." }
         format.json { render :show, status: :ok, location: @lesson }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -84,6 +108,6 @@ class LessonsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def lesson_params
-      params.require(:lesson).permit(:title, :content, :video, :video_thumbnail)
+      params.require(:lesson).permit(:title, :content, :video, :video_thumbnail, :course_id)
     end
 end
