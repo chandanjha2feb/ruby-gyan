@@ -57,10 +57,8 @@ class LessonsController < ApplicationController
   # PATCH/PUT /lessons/1 or /lessons/1.json
   def update
     authorize @lesson
-    byebug
     respond_to do |format|
       if @lesson.update(lesson_params.except(:video))
-        byebug
          # Create and store a blob for the video
          if lesson_params[:video].present?
           # Save the video as a blob and enqueue the job with the signed blob ID
